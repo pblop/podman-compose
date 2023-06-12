@@ -2297,7 +2297,7 @@ def compose_down(compose, args):
         if cnt["_service"] in excluded:
             continue
         compose.podman.run([], "rm", [cnt["name"]], sleep=0)
-    if args.remove_orphans:
+    if getattr(args, 'remove_orphans', None):
         names = (
             compose.podman.output(
                 [],
